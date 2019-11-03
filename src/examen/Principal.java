@@ -132,7 +132,7 @@ public class Principal extends JFrame implements VehiculoEventListener{
                 frame.setVisible(true);
 
                 int result = f_in.mostrarFormularioIngreso(frame);
-                    // do the approrpaite action for this result
+                
                     if (result==JOptionPane.OK_OPTION) {
 
                     } else {
