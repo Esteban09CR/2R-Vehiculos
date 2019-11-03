@@ -45,6 +45,7 @@ public class Principal extends JFrame{
         
         inicializarFormularioAgregar();        
         inicializarFormularioEditar();
+        estadoVehiculo();
                 
         setLayout(new BorderLayout());
     }
@@ -56,7 +57,8 @@ public class Principal extends JFrame{
         JTextField modelo = new JTextField(25);
         JTextField anio = new JTextField(25);
         JTextField cilidraje = new JTextField(25);
-        JTextField traccion = new JTextField(18); 
+        JTextField traccion = new JTextField(18);
+        JTextField placa = new JTextField(18); 
         
         JButton agregar = new JButton("Agregar");
         
@@ -84,6 +86,9 @@ public class Principal extends JFrame{
         labels.add(new JLabel("Traccion:", SwingConstants.TRAILING));        
         fields.add(traccion);
         
+         labels.add(new JLabel("Placa:", SwingConstants.TRAILING));        
+        fields.add(placa);
+        
         labels.add(new JLabel("", SwingConstants.TRAILING));
         fields.add(agregar);
     }
@@ -95,7 +100,8 @@ public class Principal extends JFrame{
         JTextField modelo = new JTextField(25);
         JTextField anio = new JTextField(25);
         JTextField cilidraje = new JTextField(25);
-        JTextField traccion = new JTextField(18); 
+        JTextField traccion = new JTextField(18);
+        JTextField placa = new JTextField(18); 
         
         JButton modificar = new JButton("Modificar");
         
@@ -123,8 +129,35 @@ public class Principal extends JFrame{
         labels.add(new JLabel("Traccion:", SwingConstants.TRAILING));        
         fields.add(traccion);
         
+        labels.add(new JLabel("Placa:", SwingConstants.TRAILING));        
+        fields.add(placa);
+        
         labels.add(new JLabel("", SwingConstants.TRAILING));
         fields.add(modificar);
+    }
+    private void estadoVehiculo(){
+        
+          JTextField vin = new JTextField(18); vin.setEditable(true);
+          JTextField placa = new JTextField(18); 
+          
+          JButton Consultar = new JButton("Consultar");
+          
+          JPanel labels = new JPanel(new GridLayout(0,1,0,12));
+          panel3.add(labels, BorderLayout.LINE_START);
+          JPanel fields = new JPanel(new GridLayout(0,1,0,0));
+          panel3.add(fields);
+          
+          labels.add(new JLabel("Numero VIN:", SwingConstants.TRAILING));        
+          fields.add(vin);
+          
+          labels.add(new JLabel("Placa:", SwingConstants.TRAILING));        
+          fields.add(placa);
+          
+          labels.add(new JLabel("", SwingConstants.TRAILING));
+          fields.add(Consultar);
+          
+          
+        
     }
 
     private class MenuAction implements ActionListener {
@@ -188,6 +221,7 @@ public class Principal extends JFrame{
         
         agregarVehiculo.addActionListener(new MenuAction(panel1));
         editarVehiculo.addActionListener(new MenuAction(panel2));
+        estadoVehiculo.addActionListener(new MenuAction(panel3));
 
     }
 

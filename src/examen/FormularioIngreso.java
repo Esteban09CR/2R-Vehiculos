@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package examen;
 
 import java.awt.BorderLayout;
@@ -16,10 +11,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-/**
- *
- * @author ralfaro
- */
 public class FormularioIngreso {
     private JPanel formularioIngreso = new JPanel(new BorderLayout(5,5));
     private JTextField idUsuario = new JTextField(12);
@@ -29,10 +20,6 @@ public class FormularioIngreso {
         inicializarFormularioIngreso();
     }
 
-    /** 
-     * Displays the log-in form inside a confirmation option pane. 
-     * The result (OK/Cancel) of the option pane is returned for inspection.
-     */
     public final int mostrarFormularioIngreso(Component parent) {
         return JOptionPane.showConfirmDialog(
                 parent, 

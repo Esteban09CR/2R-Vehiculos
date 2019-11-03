@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package examen;
 
 import java.awt.BorderLayout;
@@ -14,10 +9,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-/**
- *
- * @author ralfaro
- */
 public class FormularioAgregarVehiculo {
     private JPanel formularioAgregar = new JPanel(new BorderLayout(5,5));
     private JTextField vin = new JTextField(18);
