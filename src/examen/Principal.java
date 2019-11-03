@@ -24,6 +24,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.text.NumberFormatter;
 
 /**
@@ -41,10 +42,10 @@ public class Principal extends JFrame{
     public Principal(){
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         initMenu();
-        inicializarFormularioAgregar();
         
-        
-        panel2.setBackground(Color.RED);
+        inicializarFormularioAgregar();        
+        inicializarFormularioEditar();
+                
         setLayout(new BorderLayout());
     }
 
@@ -86,9 +87,47 @@ public class Principal extends JFrame{
         labels.add(new JLabel("", SwingConstants.TRAILING));
         fields.add(agregar);
     }
+    
+    private void inicializarFormularioEditar() {
+        
+        JTextField vin = new JTextField(18); vin.setEditable(false);
+        JTextField marca = new JTextField(25);
+        JTextField modelo = new JTextField(25);
+        JTextField anio = new JTextField(25);
+        JTextField cilidraje = new JTextField(25);
+        JTextField traccion = new JTextField(18); 
+        
+        JButton modificar = new JButton("Modificar");
+        
+        
+        JPanel labels = new JPanel(new GridLayout(0,1,0,12));
+        panel2.add(labels, BorderLayout.LINE_START);
+        JPanel fields = new JPanel(new GridLayout(0,1,0,0));
+        panel2.add(fields);
+
+        labels.add(new JLabel("Numero VIN:", SwingConstants.TRAILING));        
+        fields.add(vin);
+        
+        labels.add(new JLabel("Marca:", SwingConstants.TRAILING));        
+        fields.add(marca);
+        
+        labels.add(new JLabel("Modelo:", SwingConstants.TRAILING));        
+        fields.add(modelo);
+        
+        labels.add(new JLabel("Año:", SwingConstants.TRAILING));        
+        fields.add(anio);
+        
+        labels.add(new JLabel("Cilindraje:", SwingConstants.TRAILING));        
+        fields.add(cilidraje);
+        
+        labels.add(new JLabel("Traccion:", SwingConstants.TRAILING));        
+        fields.add(traccion);
+        
+        labels.add(new JLabel("", SwingConstants.TRAILING));
+        fields.add(modificar);
+    }
 
     private class MenuAction implements ActionListener {
-
         private JPanel panel;
         private MenuAction(JPanel pnl) {
             this.panel = pnl;
@@ -97,58 +136,56 @@ public class Principal extends JFrame{
         public void actionPerformed(ActionEvent e) {
             changePanel(panel);
         }
-
     }
     
     private void initMenu() {
-        JMenuBar menubar = new JMenuBar();
-        
+        JMenuBar menubar = new JMenuBar();        
 
-                JMenu archivo = new JMenu("Archivo");
-                
-                JMenuItem cerrarSesion = new JMenuItem("Cerrar Sesion");
-                //maneja el evento del menu cerrar sesion
-                cerrarSesion.addActionListener((ActionEvent ev) -> {
-                    
-                });
-                
-                JMenuItem salir = new JMenuItem("Salir");
-                //maneja el evento de salir
-                salir.addActionListener((ActionEvent ev) -> {
-                    System.exit(0);
-                });
+        JMenu archivo = new JMenu("Archivo");
 
-                archivo.add(cerrarSesion);
-                archivo.add(salir);
+        JMenuItem cerrarSesion = new JMenuItem("Cerrar Sesion");
+        //maneja el evento del menu cerrar sesion
+        cerrarSesion.addActionListener((ActionEvent ev) -> {
+            System.exit(0);
+        });
 
-                menubar.add(archivo);
+        JMenuItem salir = new JMenuItem("Salir");
+        //maneja el evento de salir
+        salir.addActionListener((ActionEvent ev) -> {
+            System.exit(0);
+        });
 
-                JMenu administracion = new JMenu("Administracion");
+        archivo.add(cerrarSesion);
+        archivo.add(salir);
 
-                JMenuItem agregarVehiculo = new JMenuItem("Agregar Vehiculo");
-                JMenuItem editarVehiculo = new JMenuItem("Editar Vehiculo");
-                JMenuItem estadoVehiculo = new JMenuItem("Estado del Vehiculo");
-                JMenuItem eliminarVehiculo = new JMenuItem("Eliminar Vehiculo");
+        menubar.add(archivo);
 
-                administracion.add(agregarVehiculo);
-                administracion.add(editarVehiculo);
-                administracion.add(estadoVehiculo);
-                administracion.add(eliminarVehiculo);
+        JMenu administracion = new JMenu("Administracion");
 
-                menubar.add(administracion);
+        JMenuItem agregarVehiculo = new JMenuItem("Agregar Vehiculo");
+        JMenuItem editarVehiculo = new JMenuItem("Editar Vehiculo");
+        JMenuItem estadoVehiculo = new JMenuItem("Estado del Vehiculo");
+        JMenuItem eliminarVehiculo = new JMenuItem("Eliminar Vehiculo");
 
-                JMenu informeVehiculo = new JMenu("Informe del Vehiculo");
+        administracion.add(agregarVehiculo);
+        administracion.add(editarVehiculo);
+        administracion.add(estadoVehiculo);
+        administracion.add(eliminarVehiculo);
 
-                JMenuItem todoslosVehiculosmantenimiento = new JMenuItem("Vehiculos en Mantenimiento");
-                JMenuItem todosvehiculosentregados = new JMenuItem("Vehiculos Entregados");
+        menubar.add(administracion);
 
-                informeVehiculo.add(todoslosVehiculosmantenimiento);
-                informeVehiculo.add(todosvehiculosentregados);
+        JMenu informeVehiculo = new JMenu("Informe del Vehiculo");
 
-                menubar.add(informeVehiculo);
-        
+        JMenuItem todoslosVehiculosmantenimiento = new JMenuItem("Vehiculos en Mantenimiento");
+        JMenuItem todosvehiculosentregados = new JMenuItem("Vehiculos Entregados");
+
+        informeVehiculo.add(todoslosVehiculosmantenimiento);
+        informeVehiculo.add(todosvehiculosentregados);
+
+        menubar.add(informeVehiculo);        
         
         setJMenuBar(menubar);
+        
         agregarVehiculo.addActionListener(new MenuAction(panel1));
         editarVehiculo.addActionListener(new MenuAction(panel2));
 
@@ -164,9 +201,26 @@ public class Principal extends JFrame{
     }
 
     public static void main(String[] args) {
-        Principal frame = new Principal();
-        frame.setBounds(300, 300, 500, 300);
-        frame.setVisible(true);
+        //crea un hilo de ejecucion para mostrar la pantalla de ingreso
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                //crea una instancia del formulario de ingreso
+                FormularioIngreso f_in = new FormularioIngreso();
 
+                Principal frame = new Principal();
+                frame.setBounds(300, 300, 500, 300);
+                frame.setVisible(true);
+
+                int result = f_in.mostrarFormularioIngreso(frame);
+                    // do the approrpaite action for this result
+                    if (result==JOptionPane.OK_OPTION) {
+
+                    } else {
+                        System.exit(0);
+                    }
+                }
+            };
+        SwingUtilities.invokeLater(r);
     }
 }
