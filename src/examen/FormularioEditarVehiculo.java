@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package examen;
 
 import java.awt.BorderLayout;
@@ -8,14 +13,17 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class FormularioAgregarVehiculo {
-    
-    FormularioAgregarVehiculo(){
+/**
+ *
+ * @author ralfaro
+ */
+public class FormularioEditarVehiculo {
+    FormularioEditarVehiculo(){
     }
-
-    public void inicializarFormularioAgregar(JPanel panel) {
+    
+    public void inicializarFormularioEditar(JPanel panel) {
         
-        JTextField vin = new JTextField(18);
+        JTextField vin = new JTextField(18); vin.setEditable(false);
         JTextField marca = new JTextField(25);
         JTextField modelo = new JTextField(25);
         JTextField anio = new JTextField(25);
@@ -23,7 +31,7 @@ public class FormularioAgregarVehiculo {
         JTextField traccion = new JTextField(18);
         JTextField placa = new JTextField(18); 
         
-        JButton agregar = new JButton("Agregar");
+        JButton modificar = new JButton("Modificar");
         
         
         JPanel labels = new JPanel(new GridLayout(0,1,0,12));
@@ -49,10 +57,10 @@ public class FormularioAgregarVehiculo {
         labels.add(new JLabel("Traccion:", SwingConstants.TRAILING));        
         fields.add(traccion);
         
-         labels.add(new JLabel("Placa:", SwingConstants.TRAILING));        
+        labels.add(new JLabel("Placa:", SwingConstants.TRAILING));        
         fields.add(placa);
         
         labels.add(new JLabel("", SwingConstants.TRAILING));
-        fields.add(agregar);
+        fields.add(modificar);
     }
 }

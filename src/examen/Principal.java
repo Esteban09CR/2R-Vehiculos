@@ -33,145 +33,21 @@ public class Principal extends JFrame{
     public Principal(){
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         initMenu();
+
+        FormularioAgregarVehiculo agregar = new FormularioAgregarVehiculo();
+        agregar.inicializarFormularioAgregar(panel1);
         
-        inicializarFormularioAgregar();        
-        inicializarFormularioEditar();
-        estadoVehiculo();
-        inicializarFormularioEliminar();
+        FormularioEditarVehiculo editar = new FormularioEditarVehiculo();
+        editar.inicializarFormularioEditar(panel2);
+        
+        FormularioEstadoVehiculo estado = new FormularioEstadoVehiculo();
+        estado.inicializarFormularioEstadoVehiculo(panel3);
+
+        FormularioEliminarVehiculo eliminar = new FormularioEliminarVehiculo();
+        eliminar.inicializarFormularioEliminar(panel4);
                 
         setLayout(new BorderLayout());
-    }
-
-    private void inicializarFormularioAgregar() {
-        
-        JTextField vin = new JTextField(18);
-        JTextField marca = new JTextField(25);
-        JTextField modelo = new JTextField(25);
-        JTextField anio = new JTextField(25);
-        JTextField cilidraje = new JTextField(25);
-        JTextField traccion = new JTextField(18);
-        JTextField placa = new JTextField(18); 
-        
-        JButton agregar = new JButton("Agregar");
-        
-        
-        JPanel labels = new JPanel(new GridLayout(0,1,0,12));
-        panel1.add(labels, BorderLayout.LINE_START);
-        JPanel fields = new JPanel(new GridLayout(0,1,0,0));
-        panel1.add(fields);
-
-        labels.add(new JLabel("Numero VIN:", SwingConstants.TRAILING));        
-        fields.add(vin);
-        
-        labels.add(new JLabel("Marca:", SwingConstants.TRAILING));        
-        fields.add(marca);
-        
-        labels.add(new JLabel("Modelo:", SwingConstants.TRAILING));        
-        fields.add(modelo);
-        
-        labels.add(new JLabel("Año:", SwingConstants.TRAILING));        
-        fields.add(anio);
-        
-        labels.add(new JLabel("Cilindraje:", SwingConstants.TRAILING));        
-        fields.add(cilidraje);
-        
-        labels.add(new JLabel("Traccion:", SwingConstants.TRAILING));        
-        fields.add(traccion);
-        
-         labels.add(new JLabel("Placa:", SwingConstants.TRAILING));        
-        fields.add(placa);
-        
-        labels.add(new JLabel("", SwingConstants.TRAILING));
-        fields.add(agregar);
-    }
-    
-    private void inicializarFormularioEditar() {
-        
-        JTextField vin = new JTextField(18); vin.setEditable(false);
-        JTextField marca = new JTextField(25);
-        JTextField modelo = new JTextField(25);
-        JTextField anio = new JTextField(25);
-        JTextField cilidraje = new JTextField(25);
-        JTextField traccion = new JTextField(18);
-        JTextField placa = new JTextField(18); 
-        
-        JButton modificar = new JButton("Modificar");
-        
-        
-        JPanel labels = new JPanel(new GridLayout(0,1,0,12));
-        panel2.add(labels, BorderLayout.LINE_START);
-        JPanel fields = new JPanel(new GridLayout(0,1,0,0));
-        panel2.add(fields);
-
-        labels.add(new JLabel("Numero VIN:", SwingConstants.TRAILING));        
-        fields.add(vin);
-        
-        labels.add(new JLabel("Marca:", SwingConstants.TRAILING));        
-        fields.add(marca);
-        
-        labels.add(new JLabel("Modelo:", SwingConstants.TRAILING));        
-        fields.add(modelo);
-        
-        labels.add(new JLabel("Año:", SwingConstants.TRAILING));        
-        fields.add(anio);
-        
-        labels.add(new JLabel("Cilindraje:", SwingConstants.TRAILING));        
-        fields.add(cilidraje);
-        
-        labels.add(new JLabel("Traccion:", SwingConstants.TRAILING));        
-        fields.add(traccion);
-        
-        labels.add(new JLabel("Placa:", SwingConstants.TRAILING));        
-        fields.add(placa);
-        
-        labels.add(new JLabel("", SwingConstants.TRAILING));
-        fields.add(modificar);
-    }
-    private void estadoVehiculo(){
-        
-          JTextField vin = new JTextField(18); vin.setEditable(true);
-          JTextField placa = new JTextField(18); 
-          
-          JButton Consultar = new JButton("Consultar");
-          
-          JPanel labels = new JPanel(new GridLayout(0,1,0,12));
-          panel3.add(labels, BorderLayout.LINE_START);
-          JPanel fields = new JPanel(new GridLayout(0,1,0,0));
-          panel3.add(fields);
-          
-          labels.add(new JLabel("Numero VIN:", SwingConstants.TRAILING));        
-          fields.add(vin);
-          
-          labels.add(new JLabel("Placa:", SwingConstants.TRAILING));        
-          fields.add(placa);
-          
-          labels.add(new JLabel("", SwingConstants.TRAILING));
-          fields.add(Consultar);
-          
-         
-    }
-    private void inicializarFormularioEliminar(){
-          
-          JTextField vin = new JTextField(18); vin.setEditable(true);
-          JTextField placa = new JTextField(18); 
-          
-          JButton Eliminar = new JButton("Eliminar");
-          
-          JPanel labels = new JPanel(new GridLayout(0,1,0,12));
-          panel4.add(labels, BorderLayout.LINE_START);
-          JPanel fields = new JPanel(new GridLayout(0,1,0,0));
-          panel4.add(fields);
-          
-          labels.add(new JLabel("Numero VIN:", SwingConstants.TRAILING));        
-          fields.add(vin);
-          
-          labels.add(new JLabel("Placa:", SwingConstants.TRAILING));        
-          fields.add(placa);
-          
-          labels.add(new JLabel("", SwingConstants.TRAILING));
-          fields.add(Eliminar);
-    
-}
+    }   
 
     private class MenuAction implements ActionListener {
         private JPanel panel;
