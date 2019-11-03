@@ -1,50 +1,60 @@
 
 package examen;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 public class Main {
-    
-    
-    
-    
     public static void main(String[] args) {
-        
+        //crea un hilo de ejecucion para mostrar la pantalla de ingreso
         Runnable r = new Runnable() {
             @Override
             public void run() {
+                //etiqueta para mostrar mensaje
                 JLabel l = new JLabel("<html>"
                         + "<body style='width: 300px; height: 175px;>",
                         SwingConstants.CENTER);
-
+                
+                //crea una instancia del formulario de ingreso
+                FormularioIngreso f_in = new FormularioIngreso();
+                
+                //crea una instancia del formulario principal
                 JFrame f = new JFrame("2R Cars");
 
                 JMenuBar menubar = new JMenuBar();
 
-                JMenu archivo = new JMenu(" Archivo ");
-                JMenuItem cerrarSesion = new JMenuItem(" Cerrar Sesion ");
-                JMenuItem salir = new JMenuItem(" Salir ");
+                JMenu archivo = new JMenu("Archivo");
+                
+                JMenuItem cerrarSesion = new JMenuItem("Cerrar Sesion");
+                //maneja el evento del menu cerrar sesion
+                cerrarSesion.addActionListener((ActionEvent ev) -> {
+                    int result = f_in.mostrarFormularioIngreso(f);
+                    if (result==JOptionPane.OK_OPTION) {
+                        l.setText("Bienvenido " + f_in.getUserID() + " seleccione una opcion del menu.");
+                    } else {
+                        System.exit(0);
+                    }
+                });
+                
+                JMenuItem salir = new JMenuItem("Salir");
+                //maneja el evento de salir
+                salir.addActionListener((ActionEvent ev) -> {
+                    System.exit(0);
+                });
 
                 archivo.add(cerrarSesion);
                 archivo.add(salir);
 
                 menubar.add(archivo);
 
-                JMenu administracion = new JMenu(" Administracion ");
+                JMenu administracion = new JMenu("Administracion");
 
                 JMenuItem agregarVehiculo = new JMenuItem("Agregar Vehiculo");
                 JMenuItem editarVehiculo = new JMenuItem("Editar Vehiculo");
@@ -60,8 +70,8 @@ public class Main {
 
                 JMenu informeVehiculo = new JMenu("Informe del Vehiculo");
 
-                JMenuItem todoslosVehiculosmantenimiento = new JMenuItem(" Vehiculos en Mantenimiento ");
-                JMenuItem todosvehiculosentregados = new JMenuItem(" Vehiculos Entregados ");
+                JMenuItem todoslosVehiculosmantenimiento = new JMenuItem("Vehiculos en Mantenimiento");
+                JMenuItem todosvehiculosentregados = new JMenuItem("Vehiculos Entregados");
 
                 informeVehiculo.add(todoslosVehiculosmantenimiento);
                 informeVehiculo.add(todosvehiculosentregados);
@@ -84,13 +94,12 @@ public class Main {
                 f.setMinimumSize(f.getSize());
                 f.setVisible(true);
 
-                FormularioIngreso lif = new FormularioIngreso();
-                int result = lif.displayLoginForm(f);
+                int result = f_in.mostrarFormularioIngreso(f);
                 // do the approrpaite action for this result
                 if (result==JOptionPane.OK_OPTION) {
-                    l.setText("Welcome " + lif.getUserID());
+                    l.setText("Bienvenido " + f_in.getUserID() + " seleccione una opcion del menu.");
                 } else {
-                    l.setText("This application requires authentication!");
+                    System.exit(0);
                 }
             }
         };

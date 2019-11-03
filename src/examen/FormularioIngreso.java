@@ -21,39 +21,39 @@ import javax.swing.SwingConstants;
  * @author ralfaro
  */
 public class FormularioIngreso {
-    private JPanel loginForm = new JPanel(new BorderLayout(5,5));
-    private JTextField userID = new JTextField(12);
+    private JPanel formularioIngreso = new JPanel(new BorderLayout(5,5));
+    private JTextField idUsuario = new JTextField(12);
     private JPasswordField password = new JPasswordField(8);
 
     FormularioIngreso() {
-        initializeLoginForm();
+        inicializarFormularioIngreso();
     }
 
     /** 
      * Displays the log-in form inside a confirmation option pane. 
      * The result (OK/Cancel) of the option pane is returned for inspection.
      */
-    public final int displayLoginForm(Component parent) {
+    public final int mostrarFormularioIngreso(Component parent) {
         return JOptionPane.showConfirmDialog(
                 parent, 
-                loginForm, 
-                "Log In", 
+                formularioIngreso, 
+                "Ingreso", 
                 JOptionPane.OK_CANCEL_OPTION, 
                 JOptionPane.QUESTION_MESSAGE);
     }
 
-    private final void initializeLoginForm() {
+    private void inicializarFormularioIngreso() {
         JPanel labels = new JPanel(new GridLayout(0,1,5,5));
-        loginForm.add(labels, BorderLayout.LINE_START);
+        formularioIngreso.add(labels, BorderLayout.LINE_START);
         JPanel fields = new JPanel(new GridLayout(0,1,5,5));
-        loginForm.add(fields);
+        formularioIngreso.add(fields);
 
-        labels.add(new JLabel("User ID:", SwingConstants.TRAILING));
-        labels.add(new JLabel("Password:", SwingConstants.TRAILING));
+        labels.add(new JLabel("Usuario:", SwingConstants.TRAILING));
+        labels.add(new JLabel("Contraseña:", SwingConstants.TRAILING));
 
         JPanel userIdConstrain = new JPanel(
                 new FlowLayout(FlowLayout.LEADING));
-        userIdConstrain.add(userID);
+        userIdConstrain.add(idUsuario);
         fields.add(userIdConstrain);
 
         JPanel passwordConstrain = new JPanel(
@@ -63,7 +63,7 @@ public class FormularioIngreso {
     }
 
     public final String getUserID() {
-        return userID.getText();
+        return idUsuario.getText();
     }
 
     public final char[] getPasword() {
