@@ -10,5 +10,6 @@ package examen;
  * @author ralfaro
  */
 public interface VehiculoEventListener {    
-    void onVehicleAction(Vehiculo v);    
+    void onVehicleAddAction(Vehiculo v);   
+    void onVehicleEditAction(Vehiculo v); 
 }

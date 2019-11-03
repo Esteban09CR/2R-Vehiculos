@@ -27,10 +27,11 @@ public class Principal extends JFrame implements VehiculoEventListener{
 
         FormularioAgregarVehiculo agregar = new FormularioAgregarVehiculo();
         agregar.inicializarFormularioAgregar(panel1);
-        agregar.setSomeEventListener(this);
+        agregar.setAddVehicleEventListener(this);
         
         FormularioEditarVehiculo editar = new FormularioEditarVehiculo();
         editar.inicializarFormularioEditar(panel2);
+        editar.setEditVehicleEventListener(this);
         
         FormularioEstadoVehiculo estado = new FormularioEstadoVehiculo();
         estado.inicializarFormularioEstadoVehiculo(panel3);
@@ -40,7 +41,12 @@ public class Principal extends JFrame implements VehiculoEventListener{
     }   
 
     @Override
-    public void onVehicleAction(Vehiculo v) {
+    public void onVehicleAddAction(Vehiculo v) {
+        vehiculos.add(v);
+    }
+    
+    @Override
+    public void onVehicleEditAction(Vehiculo v) {
         vehiculos.add(v);
     }
 
@@ -128,7 +134,7 @@ public class Principal extends JFrame implements VehiculoEventListener{
                 FormularioIngreso f_in = new FormularioIngreso();
 
                 Principal frame = new Principal();
-                frame.setBounds(300, 300, 500, 300);
+                frame.setBounds(350, 350, 500, 350);
                 frame.setVisible(true);
 
                 int result = f_in.mostrarFormularioIngreso(frame);

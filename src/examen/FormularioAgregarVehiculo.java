@@ -3,10 +3,11 @@ package examen;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -17,7 +18,7 @@ public class FormularioAgregarVehiculo {
     FormularioAgregarVehiculo(){
     }
     
-    public void setSomeEventListener (VehiculoEventListener listener) {
+    public void setAddVehicleEventListener (VehiculoEventListener listener) {
         vehiculoEventListener = listener;
     }
 
@@ -31,6 +32,11 @@ public class FormularioAgregarVehiculo {
         JTextField traccion = new JTextField(18);
         JTextField placa = new JTextField(18); 
         
+        ButtonGroup bg = new ButtonGroup();
+        
+        JRadioButton gasolina = new JRadioButton("Gasolina");
+        JRadioButton diesel = new JRadioButton("Diesel");
+        
         JButton agregar = new JButton("Agregar");
         agregar.addActionListener((ActionEvent e) -> {
             if(vehiculoEventListener!=null)
@@ -39,7 +45,7 @@ public class FormularioAgregarVehiculo {
                 v.setVin(vin.getText());
                 v.setAno(anio.getText());
                 
-                vehiculoEventListener.onVehicleAction(v);
+                vehiculoEventListener.onVehicleAddAction(v);
             }
         });
         
@@ -69,6 +75,11 @@ public class FormularioAgregarVehiculo {
         
          labels.add(new JLabel("Placa:", SwingConstants.TRAILING));        
         fields.add(placa);
+        
+        bg.add(gasolina);
+        bg.add(diesel);
+        fields.add(gasolina);
+        fields.add(diesel);
         
         labels.add(new JLabel("", SwingConstants.TRAILING));
         fields.add(agregar);
