@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package examen;
 
 import java.awt.BorderLayout;
@@ -27,10 +22,6 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.text.NumberFormatter;
 
-/**
- *
- * @author ralfaro
- */
 public class Principal extends JFrame{
     private JPanel panel1 = new JPanel();
     private JPanel panel2 = new JPanel();
@@ -46,6 +37,7 @@ public class Principal extends JFrame{
         inicializarFormularioAgregar();        
         inicializarFormularioEditar();
         estadoVehiculo();
+        inicializarFormularioEliminar();
                 
         setLayout(new BorderLayout());
     }
@@ -156,9 +148,30 @@ public class Principal extends JFrame{
           labels.add(new JLabel("", SwingConstants.TRAILING));
           fields.add(Consultar);
           
-          
-        
+         
     }
+    private void inicializarFormularioEliminar(){
+          
+          JTextField vin = new JTextField(18); vin.setEditable(true);
+          JTextField placa = new JTextField(18); 
+          
+          JButton Eliminar = new JButton("Eliminar");
+          
+          JPanel labels = new JPanel(new GridLayout(0,1,0,12));
+          panel4.add(labels, BorderLayout.LINE_START);
+          JPanel fields = new JPanel(new GridLayout(0,1,0,0));
+          panel4.add(fields);
+          
+          labels.add(new JLabel("Numero VIN:", SwingConstants.TRAILING));        
+          fields.add(vin);
+          
+          labels.add(new JLabel("Placa:", SwingConstants.TRAILING));        
+          fields.add(placa);
+          
+          labels.add(new JLabel("", SwingConstants.TRAILING));
+          fields.add(Eliminar);
+    
+}
 
     private class MenuAction implements ActionListener {
         private JPanel panel;
@@ -222,6 +235,7 @@ public class Principal extends JFrame{
         agregarVehiculo.addActionListener(new MenuAction(panel1));
         editarVehiculo.addActionListener(new MenuAction(panel2));
         estadoVehiculo.addActionListener(new MenuAction(panel3));
+        eliminarVehiculo.addActionListener(new MenuAction(panel4));
 
     }
 
