@@ -1,6 +1,8 @@
 
 package examen;
 
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -8,11 +10,14 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 public class Main {
     public static void main(String[] args) {
+        
         //crea un hilo de ejecucion para mostrar la pantalla de ingreso
         Runnable r = new Runnable() {
             @Override
@@ -23,7 +28,7 @@ public class Main {
                         SwingConstants.CENTER);
                 
                 //crea una instancia del formulario de ingreso
-                FormularioIngreso f_in = new FormularioIngreso();
+                FormularioIngreso f_in = new FormularioIngreso(); 
                 
                 //crea una instancia del formulario principal
                 JFrame f = new JFrame("2R Cars");
