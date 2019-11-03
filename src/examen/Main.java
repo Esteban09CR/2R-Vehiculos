@@ -62,9 +62,24 @@ public class Main {
                 JMenu administracion = new JMenu("Administracion");
 
                 JMenuItem agregarVehiculo = new JMenuItem("Agregar Vehiculo");
+                  agregarVehiculo.addActionListener((ActionEvent ev) -> {
+                     l.setText("Agregue Vehiculo ");
+                    
+                });
                 JMenuItem editarVehiculo = new JMenuItem("Editar Vehiculo");
+                editarVehiculo.addActionListener((ActionEvent ev) -> {
+                     l.setText("Edite el Vehiculo que desea");
+                      });
+                     
                 JMenuItem estadoVehiculo = new JMenuItem("Estado del Vehiculo");
+                estadoVehiculo.addActionListener((ActionEvent ev) -> {
+                     l.setText("Cual es el estado del vehiculo?");
+                      });
+                
                 JMenuItem eliminarVehiculo = new JMenuItem("Eliminar Vehiculo");
+                eliminarVehiculo.addActionListener((ActionEvent ev) -> {
+                     l.setText("Cual Vehiculo desea eliminar?");
+                 });
 
                 administracion.add(agregarVehiculo);
                 administracion.add(editarVehiculo);
@@ -74,9 +89,15 @@ public class Main {
                 menubar.add(administracion);
 
                 JMenu informeVehiculo = new JMenu("Informe del Vehiculo");
-
+            
                 JMenuItem todoslosVehiculosmantenimiento = new JMenuItem("Vehiculos en Mantenimiento");
+                    informeVehiculo.addActionListener((ActionEvent ev) -> {
+                     l.setText("Que tiene el vehiculo");
+                 });
                 JMenuItem todosvehiculosentregados = new JMenuItem("Vehiculos Entregados");
+                 informeVehiculo.addActionListener((ActionEvent ev) -> {
+                     l.setText("Cuales Vehiculos se han entregado?");
+                 });
 
                 informeVehiculo.add(todoslosVehiculosmantenimiento);
                 informeVehiculo.add(todosvehiculosentregados);
