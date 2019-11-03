@@ -32,6 +32,7 @@ public class FormularioAgregarVehiculo {
         JTextField traccion = new JTextField(18);
         JTextField placa = new JTextField(18); 
         
+        
         ButtonGroup bg = new ButtonGroup();
         
         JRadioButton gasolina = new JRadioButton("Gasolina");
@@ -50,7 +51,7 @@ public class FormularioAgregarVehiculo {
         });
         
         
-        JPanel labels = new JPanel(new GridLayout(0,1,0,12));
+        JPanel labels = new JPanel(new GridLayout(10,1,0,15));
         panel.add(labels, BorderLayout.LINE_START);
         JPanel fields = new JPanel(new GridLayout(0,1,0,0));
         panel.add(fields);
@@ -73,9 +74,10 @@ public class FormularioAgregarVehiculo {
         labels.add(new JLabel("Traccion:", SwingConstants.TRAILING));        
         fields.add(traccion);
         
-         labels.add(new JLabel("Placa:", SwingConstants.TRAILING));        
+        labels.add(new JLabel("Placa:", SwingConstants.TRAILING));        
         fields.add(placa);
         
+     
         bg.add(gasolina);
         bg.add(diesel);
         fields.add(gasolina);
@@ -83,5 +85,8 @@ public class FormularioAgregarVehiculo {
         
         labels.add(new JLabel("", SwingConstants.TRAILING));
         fields.add(agregar);
+        
+        
+        
     }
 }
