@@ -1,41 +1,33 @@
 package examen;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.NumberFormat;
-import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
+import java.util.ArrayList;
 import javax.swing.JFrame;
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-import javax.swing.text.NumberFormatter;
 
-public class Principal extends JFrame{
+public class Principal extends JFrame implements VehiculoEventListener{
     private JPanel panel1 = new JPanel();
     private JPanel panel2 = new JPanel();
     private JPanel panel3 = new JPanel();
     private JPanel panel4 = new JPanel();
     private JPanel panel5 = new JPanel();
     private JPanel panel6 = new JPanel();
+    
+    ArrayList<Vehiculo> vehiculos = new ArrayList<Vehiculo>();
 
     public Principal(){
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
         initMenu();
 
         FormularioAgregarVehiculo agregar = new FormularioAgregarVehiculo();
         agregar.inicializarFormularioAgregar(panel1);
+        agregar.setSomeEventListener(this);
         
         FormularioEditarVehiculo editar = new FormularioEditarVehiculo();
         editar.inicializarFormularioEditar(panel2);
@@ -45,9 +37,12 @@ public class Principal extends JFrame{
 
         FormularioEliminarVehiculo eliminar = new FormularioEliminarVehiculo();
         eliminar.inicializarFormularioEliminar(panel4);
-                
-        setLayout(new BorderLayout());
     }   
+
+    @Override
+    public void onVehicleAction(Vehiculo v) {
+        vehiculos.add(v);
+    }
 
     private class MenuAction implements ActionListener {
         private JPanel panel;

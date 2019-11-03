@@ -2,6 +2,8 @@ package examen;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -10,7 +12,13 @@ import javax.swing.SwingConstants;
 
 public class FormularioAgregarVehiculo {
     
+    private VehiculoEventListener vehiculoEventListener;
+    
     FormularioAgregarVehiculo(){
+    }
+    
+    public void setSomeEventListener (VehiculoEventListener listener) {
+        vehiculoEventListener = listener;
     }
 
     public void inicializarFormularioAgregar(JPanel panel) {
@@ -24,6 +32,16 @@ public class FormularioAgregarVehiculo {
         JTextField placa = new JTextField(18); 
         
         JButton agregar = new JButton("Agregar");
+        agregar.addActionListener((ActionEvent e) -> {
+            if(vehiculoEventListener!=null)
+            {
+                Vehiculo v = new VehiculoDiesel();
+                v.setVin(vin.getText());
+                v.setAno(anio.getText());
+                
+                vehiculoEventListener.onVehicleAction(v);
+            }
+        });
         
         
         JPanel labels = new JPanel(new GridLayout(0,1,0,12));
