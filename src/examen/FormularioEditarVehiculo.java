@@ -22,7 +22,7 @@ public class FormularioEditarVehiculo {
         vehiculoEventListener = listener;
     }
     
-    public void inicializarFormularioEditar(JPanel panel) {
+    public void inicializarFormularioEditar(JPanel panel, Vehiculo vehiculo) {
         
         JTextField vin = new JTextField(18); vin.setEditable(false);
         JTextField marca = new JTextField(25);
@@ -32,6 +32,19 @@ public class FormularioEditarVehiculo {
         JTextField traccion = new JTextField(18);
         JTextField placa = new JTextField(18); 
         
+        if(vehiculo != null){
+            vin.setText(vehiculo.getVin());
+            placa.setText(vehiculo.getPlaca());
+        }
+        
+        JButton buscar = new JButton("Buscar");
+        buscar.addActionListener((ActionEvent e) -> {
+            if(vehiculoEventListener!=null)
+            {
+                vehiculoEventListener.onVehicleSearchAction(placa.getText());
+            }
+        });
+        
         JButton modificar = new JButton("Modificar");
         modificar.addActionListener((ActionEvent e) -> {
             if(vehiculoEventListener!=null)
@@ -39,6 +52,7 @@ public class FormularioEditarVehiculo {
                 Vehiculo v = new VehiculoDiesel();
                 v.setVin(vin.getText());
                 v.setAno(anio.getText());
+                
                 
                 vehiculoEventListener.onVehicleEditAction(v);
             }
@@ -71,6 +85,13 @@ public class FormularioEditarVehiculo {
         fields.add(placa);
         
         labels.add(new JLabel("", SwingConstants.TRAILING));
+        fields.add(buscar);
+        
+        labels.add(new JLabel("", SwingConstants.TRAILING));
         fields.add(modificar);
+    }
+    
+    public void llenarFormulario(Vehiculo v){
+        
     }
 }

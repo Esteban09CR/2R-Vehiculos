@@ -30,7 +30,7 @@ public class Principal extends JFrame implements VehiculoEventListener{
         agregar.setAddVehicleEventListener(this);
         
         FormularioEditarVehiculo editar = new FormularioEditarVehiculo();
-        editar.inicializarFormularioEditar(panel2);
+        editar.inicializarFormularioEditar(panel2, null);
         editar.setEditVehicleEventListener(this);
         
         FormularioEstadoVehiculo estado = new FormularioEstadoVehiculo();
@@ -47,7 +47,36 @@ public class Principal extends JFrame implements VehiculoEventListener{
     
     @Override
     public void onVehicleEditAction(Vehiculo v) {
-        vehiculos.add(v);
+        Vehiculo veh = null;
+        for(int i = 0; i<vehiculos.size(); i++){
+            if(vehiculos.get(i).getPlaca().equals(v.getPlaca())){
+                veh = vehiculos.get(i);
+            }
+        }
+        
+        veh.setMarca(v.getMarca());
+        
+    }
+    
+    @Override
+    public void onVehicleSearchAction(String placa){
+        Vehiculo v = null;
+        for(int i = 0; i<vehiculos.size(); i++){
+            if(vehiculos.get(i).getPlaca().equals(placa)){
+                v = vehiculos.get(i);
+            }
+        }
+        
+        if(v != null){
+            FormularioEditarVehiculo editar = new FormularioEditarVehiculo();
+            editar.inicializarFormularioEditar(panel2, v);
+            getContentPane().removeAll();
+            getContentPane().add(panel2, BorderLayout.CENTER);
+            getContentPane().doLayout();
+            update(getGraphics());
+            panel2.validate();
+            panel2.repaint();
+        }
     }
 
     private class MenuAction implements ActionListener {

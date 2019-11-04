@@ -45,6 +45,11 @@ public class FormularioAgregarVehiculo {
                 Vehiculo v = new VehiculoDiesel();
                 v.setVin(vin.getText());
                 v.setAno(anio.getText());
+                v.setPlaca(placa.getText());
+                v.setMarca(marca.getText());
+                v.setModelo(modelo.getText());
+                v.setCilindraje(cilidraje.getText());
+                v.setTraccion(traccion.getText());
                 
                 vehiculoEventListener.onVehicleAddAction(v);
             }
