@@ -28,13 +28,15 @@ public class FormularioEditarVehiculo {
         JTextField marca = new JTextField(25);
         JTextField modelo = new JTextField(25);
         JTextField anio = new JTextField(25);
-        JTextField cilidraje = new JTextField(25);
+        JTextField cilindraje = new JTextField(25);
         JTextField traccion = new JTextField(18);
         JTextField placa = new JTextField(18); 
+       
         
         if(vehiculo != null){
             vin.setText(vehiculo.getVin());
             placa.setText(vehiculo.getPlaca());
+            cilindraje.setText(vehiculo.getCilindraje());
         }
         
         JButton buscar = new JButton("Buscar");
@@ -52,6 +54,14 @@ public class FormularioEditarVehiculo {
                 Vehiculo v = new VehiculoDiesel();
                 v.setVin(vin.getText());
                 v.setAno(anio.getText());
+                v.setCilindraje(cilindraje.getText());
+                v.setMarca(marca.getText());
+                v.setModelo(modelo.getText());
+                v.setPlaca(placa.getText());
+                v.setTraccion(traccion.getText());
+               
+
+                
                 
                 
                 vehiculoEventListener.onVehicleEditAction(v);
@@ -76,7 +86,7 @@ public class FormularioEditarVehiculo {
         fields.add(anio);
         
         labels.add(new JLabel("Cilindraje:", SwingConstants.TRAILING));        
-        fields.add(cilidraje);
+        fields.add(cilindraje);
         
         labels.add(new JLabel("Traccion:", SwingConstants.TRAILING));        
         fields.add(traccion);

@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -52,6 +53,7 @@ public class FormularioAgregarVehiculo {
                 v.setTraccion(traccion.getText());
                 
                 vehiculoEventListener.onVehicleAddAction(v);
+                JOptionPane.showMessageDialog(null, "Vehiculo agregado correctamente");
             }
         });
         

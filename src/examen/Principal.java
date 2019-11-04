@@ -1,5 +1,6 @@
 package examen;
 
+
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -163,7 +164,7 @@ public class Principal extends JFrame implements VehiculoEventListener{
                 FormularioIngreso f_in = new FormularioIngreso();
 
                 Principal frame = new Principal();
-                frame.setBounds(350, 350, 500, 350);
+                frame.setBounds(1024, 400,1024,400);
                 frame.setVisible(true);
 
                 int result = f_in.mostrarFormularioIngreso(frame);
