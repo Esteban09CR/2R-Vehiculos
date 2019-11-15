@@ -13,6 +13,12 @@ import javax.swing.SwingConstants;
 
 public class FormularioEliminarVehiculo {
     
+    private VehiculoEventListener vehiculoEventListener;
+    
+    public void setEliminarVehicleEventListener (VehiculoEventListener listener) {
+        vehiculoEventListener = listener;
+    }
+    
     public void inicializarFormularioEliminar(JPanel panel){
           
           JTextField vin = new JTextField(18); vin.setEditable(true);
@@ -20,7 +26,11 @@ public class FormularioEliminarVehiculo {
           
           JButton Eliminar = new JButton("Eliminar");
         Eliminar.addActionListener((ActionEvent e) -> {
-            JOptionPane.showMessageDialog(null, "Vehiculo Eliminado con exito");
+            if(vehiculoEventListener!=null)
+            {                
+                vehiculoEventListener.onVehicleDeleteAction(placa.getText());
+                JOptionPane.showMessageDialog(null, "Vehiculo eliminado correctamente");
+            }
         });
           
         JPanel labels = new JPanel(new GridLayout(0,1,0,12));

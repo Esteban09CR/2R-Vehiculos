@@ -22,8 +22,21 @@ public class Principal extends JFrame implements VehiculoEventListener{
     private JPanel panel6 = new JPanel();
     
     ArrayList<Vehiculo> vehiculos = new ArrayList<Vehiculo>();
+    ArrayList<Usuarios> usuarios = new ArrayList<Usuarios>();
 
     public Principal(){
+        
+        Usuarios u1 = new Usuarios();
+        u1.setUsuario("Esteban");
+        u1.setContrasena("123");
+        
+        Usuarios u2 = new Usuarios();
+        u1.setUsuario("Invitado");
+        u1.setContrasena("123");
+        
+        usuarios.add(u1);
+        usuarios.add(u2);
+        
         initMenu();
 
         FormularioAgregarVehiculo agregar = new FormularioAgregarVehiculo();
@@ -39,11 +52,21 @@ public class Principal extends JFrame implements VehiculoEventListener{
 
         FormularioEliminarVehiculo eliminar = new FormularioEliminarVehiculo();
         eliminar.inicializarFormularioEliminar(panel4);
+        eliminar.setEliminarVehicleEventListener(this);
     }   
 
     @Override
     public void onVehicleAddAction(Vehiculo v) {
         vehiculos.add(v);
+    }
+    
+    @Override
+    public void onVehicleDeleteAction(String placa){
+        for (int i =0; i < vehiculos.size(); i++){
+            if(vehiculos.get(i).getPlaca().equals(placa)){
+                vehiculos.remove(i); 
+            }
+        }
     }
     
     @Override
@@ -170,7 +193,21 @@ public class Principal extends JFrame implements VehiculoEventListener{
                 int result = f_in.mostrarFormularioIngreso(frame);
                 
                     if (result==JOptionPane.OK_OPTION) {
-
+                        String usuario = f_in.getUserID();
+                        String con = f_in.getPasword().toString();
+                        
+                        while(!(usuario.equals("Esteban") || usuario.equals("Invitado")) && !con.equals("123"))
+                        {
+                            JOptionPane.showMessageDialog(frame, "Error en credenciales");
+                            result = f_in.mostrarFormularioIngreso(frame);
+                            
+                            usuario = f_in.getUserID();
+                            con = f_in.getPasword().toString();
+                            
+                            if (result==JOptionPane.CANCEL_OPTION) {
+                                System.exit(0);
+                            }                            
+                        }                        
                     } else {
                         System.exit(0);
                     }
