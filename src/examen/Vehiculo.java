@@ -7,6 +7,26 @@ abstract class Vehiculo {
         
     }
     
+    public boolean mantenimiento;
+
+    /**
+     * Get the value of mantenimiento
+     *
+     * @return the value of mantenimiento
+     */
+    public boolean isMantenimiento() {
+        return mantenimiento;
+    }
+
+    /**
+     * Set the value of mantenimiento
+     *
+     * @param mantenimiento new value of mantenimiento
+     */
+    public void setMantenimiento(boolean mantenimiento) {
+        this.mantenimiento = mantenimiento;
+    }
+
     private String estado;
     
     public String getEstado() {

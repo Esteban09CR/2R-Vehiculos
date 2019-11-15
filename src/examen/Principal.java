@@ -53,6 +53,9 @@ public class Principal extends JFrame implements VehiculoEventListener{
         FormularioEliminarVehiculo eliminar = new FormularioEliminarVehiculo();
         eliminar.inicializarFormularioEliminar(panel4);
         eliminar.setEliminarVehicleEventListener(this);
+        
+        FormularioInformeVehiculo informe = new FormularioInformeVehiculo();
+        informe.inicializarInformeVehiculo(panel5, vehiculos);
     }   
 
     @Override
@@ -168,6 +171,7 @@ public class Principal extends JFrame implements VehiculoEventListener{
         editarVehiculo.addActionListener(new MenuAction(panel2));
         estadoVehiculo.addActionListener(new MenuAction(panel3));
         eliminarVehiculo.addActionListener(new MenuAction(panel4));
+        todoslosVehiculosmantenimiento.addActionListener(new MenuAction(panel5));
 
     }
 

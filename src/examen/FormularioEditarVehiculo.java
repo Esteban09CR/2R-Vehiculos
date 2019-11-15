@@ -4,9 +4,11 @@ package examen;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -30,7 +32,12 @@ public class FormularioEditarVehiculo {
         JTextField anio = new JTextField(25);
         JTextField cilindraje = new JTextField(25);
         JTextField traccion = new JTextField(18);
-        JTextField placa = new JTextField(18);        
+        JTextField placa = new JTextField(18); 
+        
+        ButtonGroup bg = new ButtonGroup();
+        
+        JRadioButton mantenimiento = new JRadioButton("Mantenimiento");
+        JRadioButton entregado = new JRadioButton("Entregado");
         
         if(vehiculo != null){
             vin.setText(vehiculo.getVin());
@@ -62,6 +69,7 @@ public class FormularioEditarVehiculo {
                 v.setModelo(modelo.getText());
                 v.setPlaca(placa.getText());
                 v.setTraccion(traccion.getText());
+                v.setMantenimiento(mantenimiento.isSelected());
                 
                 vehiculoEventListener.onVehicleEditAction(v);
             }
@@ -93,11 +101,16 @@ public class FormularioEditarVehiculo {
         labels.add(new JLabel("Placa:", SwingConstants.TRAILING));        
         fields.add(placa);
         
+        bg.add(mantenimiento);
+        bg.add(entregado);
+        fields.add(mantenimiento);
+        fields.add(entregado);
+        
         labels.add(new JLabel("", SwingConstants.TRAILING));
         fields.add(buscar);
         
         labels.add(new JLabel("", SwingConstants.TRAILING));
-        fields.add(modificar);
+        fields.add(modificar);        
     }
     
     public void llenarFormulario(Vehiculo v){
