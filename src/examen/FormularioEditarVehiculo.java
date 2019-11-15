@@ -30,13 +30,16 @@ public class FormularioEditarVehiculo {
         JTextField anio = new JTextField(25);
         JTextField cilindraje = new JTextField(25);
         JTextField traccion = new JTextField(18);
-        JTextField placa = new JTextField(18); 
-       
+        JTextField placa = new JTextField(18);        
         
         if(vehiculo != null){
             vin.setText(vehiculo.getVin());
             placa.setText(vehiculo.getPlaca());
             cilindraje.setText(vehiculo.getCilindraje());
+        }else{
+            vin.setText("");
+            placa.setText("");
+            cilindraje.setText("");
         }
         
         JButton buscar = new JButton("Buscar");
@@ -59,10 +62,6 @@ public class FormularioEditarVehiculo {
                 v.setModelo(modelo.getText());
                 v.setPlaca(placa.getText());
                 v.setTraccion(traccion.getText());
-               
-
-                
-                
                 
                 vehiculoEventListener.onVehicleEditAction(v);
             }

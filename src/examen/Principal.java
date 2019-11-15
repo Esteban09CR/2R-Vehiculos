@@ -100,12 +100,14 @@ public class Principal extends JFrame implements VehiculoEventListener{
             update(getGraphics());
             panel2.validate();
             panel2.repaint();
+        }else{            
+            JOptionPane.showMessageDialog(this, "vehiculo no encontrado");
         }
     }
 
     private class MenuAction implements ActionListener {
         private JPanel panel;
-        private MenuAction(JPanel pnl) {
+        private MenuAction(JPanel pnl) {           
             this.panel = pnl;
         }
         @Override
